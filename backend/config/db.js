@@ -3,13 +3,10 @@ require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        mongoose.connect('mongodb+srv://srkr335:Sreejithkr12345@cluster1.ovbjg.mongodb.net/?', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log(' MongoDB Connected Successfully');
     } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
+        console.error('Error connecting to MongoDB:', error.message);
         process.exit(1);  
     }
 };
